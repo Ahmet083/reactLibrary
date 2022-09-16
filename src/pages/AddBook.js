@@ -8,7 +8,6 @@ const AddBook = (props) => {
       <Header />
       <AddBookForm />
     </div>
-  );
-};
-
+  )
+}
 export default AddBook;

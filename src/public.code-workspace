@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../3-sezon-haftasonu-react-library-master/public"
+		},
+		{
+			"path": "../../../3-sezon-haftasonu-react-library-master/src"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}

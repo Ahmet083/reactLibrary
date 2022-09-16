@@ -6,7 +6,7 @@ const Header = (props) => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-          LIBRARY
+          Kitaplığım
         </Link>
         <button
           className="navbar-toggler"
@@ -23,7 +23,7 @@ const Header = (props) => {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link className="nav-link" to="/">
-                Books
+                Kitaplar
               </Link>
             </li>
           </ul>
