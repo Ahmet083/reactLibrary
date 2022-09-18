@@ -12,7 +12,9 @@ function App() {
    const dispatch = useDispatch();
 
    useEffect(() => {
+    // categories
     dispatch({ type: "FETCH_CATEGORIES_START" });
+
    },[]);
    
   return (

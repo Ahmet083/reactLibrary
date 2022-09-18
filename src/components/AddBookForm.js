@@ -5,20 +5,22 @@ import Loading from "./Loading";
 
 const AddBookForm = (props) => {
   const navigate = useNavigate();
-  const [categories, setCategories] = useState(null);
+  // const [categoriesState, setCategoriesState] = useState("");
+
   const [bookname, setBookname] = useState("");
   const [author, setAuthor] = useState("");
   const [isbn, setIsbn] = useState("");
   const [category, setCategory] = useState("");
-  useEffect(() => {
-    axios
-      .get("http://localhost:3004/categories")
-      .then((res) => {
-        console.log(res);
-        setCategories(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  //  const [dispatch, setDispatch] = useState("")
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:3004/categories")
+  //     .then((res) => {
+  //       console.log(res);
+  //       setCategories(res.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -37,6 +39,7 @@ const AddBookForm = (props) => {
       .post("http://localhost:3004/books", newBook)
       .then((res) => {
         console.log("kitap ekle res", res);
+        dispatch ({type: "ADD_BOOK", payload: newBook})
         setBookname("");
         setAuthor("");
         setIsbn("");
@@ -46,7 +49,7 @@ const AddBookForm = (props) => {
       .catch((err) => console.log(err));
   };
 
-  if (categories === null) {
+  if (categoriesState.success !== true) {
     return <Loading />;
   }
 
@@ -92,7 +95,7 @@ const AddBookForm = (props) => {
               <option value={""} selected>
                 Kategori Seçin
               </option>
-              {categories.map((cat) => {
+              {categoriesState.categories.map((cat) => {
                 return (
                   <option key={cat.id} value={cat.id}>
                     {cat.name}
