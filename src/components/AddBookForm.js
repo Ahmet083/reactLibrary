@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loading from "./Loading";
+import { useSelector, useDispatch } from "react-redux";
 
 const AddBookForm = (props) => {
+  const dispatch = useDispatch();
+  const { categoriesState } = useSelector((state) => state);
   const navigate = useNavigate();
-  // const [categoriesState, setCategoriesState] = useState("");
-
+  // const [categories, setCategories] = useState("")
   const [bookname, setBookname] = useState("");
   const [author, setAuthor] = useState("");
   const [isbn, setIsbn] = useState("");
