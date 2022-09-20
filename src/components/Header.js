@@ -26,6 +26,11 @@ const Header = (props) => {
                 Books
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/categories">
+                Category
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

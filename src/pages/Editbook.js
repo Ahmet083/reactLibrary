@@ -6,39 +6,70 @@ import axios from "axios";
 import Header from "../components/Header";
 import Loading from "../components/Loading";
 import Modal from "../components/Modal";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const EditBook = (props) => {
-  const { categoriesState } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const { categoriesState, bookState } = useSelector((state) => state);
+  console.log(booksState);
   const params = useParams();
   const navigate = useNavigate();
   console.log("params", params);
-
+  const booksState = useState ();
   const [bookname, setBookname] = useState("");
   const [author, setAuthor] = useState("");
   const [isbn, setIsbn] = useState("");
   const [category, setCategory] = useState("");
-  //const [categories, setCategories] = useState(null);
+  const [categories, setCategories] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3004/books/${params.kitapId}`)
-      .then((res) => {
-        console.log(res.data);
-        setBookname(res.data.name);
-        setAuthor(res.data.author);
-        setIsbn(res.data.isbn);
-        setCategory(res.data.categoryId);
-        // axios
-        //   .get("http://localhost:3004/categories")
-        //   .then((res) => {
-        //     setCategories(res.data);
-        //   })
-        //   .catch((err) => console.log("categories error", err));
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    console.log(booksState.books, params.kitapId);
+    const arananKitap = bookState.books.find (
+      (item) => item.add == params.kitapId
+    );
+    if (arananKitap === undefined) {
+      navigate("/");
+      return;
+      // axios
+      //   .get(`http://localhost:3004/books/${params.kitapId}`)
+      //   .then((res) => {
+      //     console.log(res.data);
+      //     setBookname(res.data.name);
+      //     setAuthor(res.data.author);
+      //     setIsbn(res.data.isbn);
+      //     setCategory(res.data.categoryId);
+      //     axios
+      //       .get("http://localhost:3004/categories")
+      //       .then((res) => {
+      //         setCategories(res.data);
+      //       })
+      //       .catch((err) => console.log("categories error", err));
+      //   })
+      //   .catch((err) => console.log(err));
+    }
+      console.log(arananKitap);
+    setBookname(arananKitap.name);
+    setAuthor(arananKitap.author);
+    setIsbn(arananKitap.isbn);
+    setCategory(arananKitap.categoryId);
+    
+    // axios
+    //   .get(`http://localhost:3004/books/${params.kitapId}`)
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     
+    //     
+    //     // axios
+    //     //   .get("http://localhost:3004/categories")
+    //     //   .then((res) => {
+    //     //     setCategories(res.data);
+    //     //   })
+    //     //   .catch((err) => console.log("categories error", err));
+  //   //   })
+  //     .catch((err) => console.log(err));
+  document.title = `Kitaplik - Kitap Duzenle - ${arananKitap}`
+   }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -62,13 +93,14 @@ const EditBook = (props) => {
       .put(`http://localhost:3004/books/${params.kitapId}`, updatedBook)
       .then((res) => {
         console.log(res);
+        dispatch({ type : "EDIT_BOOK", payload: updatedBook});
         setShowModal(false);
         navigate("/");
       })
       .catch((err) => console.log("edit error", err));
   };
 
-  if (categoriesState.success !== true) {
+  if (categoriesState.success !== true || bookState.success !== true) {
     return <Loading />;
   }
   return (
