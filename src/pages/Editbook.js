@@ -88,7 +88,7 @@ const EditBook = (props) => {
       categoryId: category,
       isbn: isbn,
     };
-    console.log("updatedBook", updatedBook);
+   
     axios
       .put(`http://localhost:3004/books/${params.kitapId}`, updatedBook)
       .then((res) => {

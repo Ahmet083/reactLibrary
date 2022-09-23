@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Loading from "./Loading";
-import Modal from "../components/Modal";
+import Modal from "./Modal";
 import { useSelector, useDispatch } from "react-redux";
 
 const ListBooks = (props) => {
-  const dispatch = useDispatch()
-  const {categoriesState, booksState } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const { categoriesState, booksState } = useSelector((state) => state);
   console.log(categoriesState);
   console.log("booksState", booksState);
 
@@ -33,18 +33,19 @@ const ListBooks = (props) => {
     //   .catch((err) => console.log("books err", err));
   }, [didUpdate]);
   const kitapSil = (id) => {
-    console.log(`http://localhost:3004/books/${id}`);
+    console.log(id);
     axios
       .delete(`http://localhost:3004/books/${id}`)
       .then((res) => {
         console.log("delete res", res);
-        dispatch({ type: "DELETE_BOOK", payload: id})
+        dispatch({ type: "DELETE_BOOK", payload: id,
+       });
         setDidUpdate(!didUpdate);
         setShowModal(false);
       })
       .catch((err) => console.log(err));
   };
-  if (booksState.success !== true || categoriesState.succes !== true) {
+  if (booksState.success === false || categoriesState.succes === false) {
     return <Loading />;
   }
   return (
@@ -70,14 +71,14 @@ const ListBooks = (props) => {
         </thead>
         <tbody>
           {booksState.books.map((book) => {
-            const category = categoriesState.categories.find(
+            const category = categoriesState.categories?.find(
               (cat) => cat.id === book.categoryId
             );
             return (
               <tr key={book.id}>
-                <td>{book.name}</td>
-                <td>{book.author}</td>
-                <td>{category.name}</td>
+                <td>{book?.name}</td>
+                <td>{book?.author}</td>
+                <td>{category?.name}</td>
                 <td className="text-center">
                   {book.isbn === "" ? "-" : book.isbn}
                 </td>
