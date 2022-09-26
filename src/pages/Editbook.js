@@ -1,75 +1,63 @@
 import React, { useEffect, useState } from "react";
 
+import Header from "../components/Header";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-
-import Header from "../components/Header";
 import Loading from "../components/Loading";
+
 import Modal from "../components/Modal";
 import { useSelector, useDispatch } from "react-redux";
 
 const EditBook = (props) => {
   const dispatch = useDispatch();
-  const { categoriesState, bookState } = useSelector((state) => state);
+  const { categoriesState, booksState } = useSelector((state) => state);
   console.log(booksState);
   const params = useParams();
   const navigate = useNavigate();
+
   console.log("params", params);
-  const booksState = useState ();
-  const [bookname, setBookname] = useState("");
-  const [author, setAuthor] = useState("");
+ // const booksState = useState();
+
+  const [bookName, setBookname] = useState("");
+  const [authorName, setAuthorName] = useState("");
   const [isbn, setIsbn] = useState("");
   const [category, setCategory] = useState("");
-  const [categories, setCategories] = useState(null);
+  // const [categories, setCategories] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     console.log(booksState.books, params.kitapId);
-    const arananKitap = bookState.books.find (
-      (item) => item.add == params.kitapId
+    const arananKitap = booksState.books.find(
+      (item) => item.id == params.kitapId
     );
     if (arananKitap === undefined) {
       navigate("/");
       return;
-      // axios
-      //   .get(`http://localhost:3004/books/${params.kitapId}`)
-      //   .then((res) => {
-      //     console.log(res.data);
-      //     setBookname(res.data.name);
-      //     setAuthor(res.data.author);
-      //     setIsbn(res.data.isbn);
-      //     setCategory(res.data.categoryId);
-      //     axios
-      //       .get("http://localhost:3004/categories")
-      //       .then((res) => {
-      //         setCategories(res.data);
-      //       })
-      //       .catch((err) => console.log("categories error", err));
-      //   })
-      //   .catch((err) => console.log(err));
     }
-      console.log(arananKitap);
-    setBookname(arananKitap.name);
-    setAuthor(arananKitap.author);
-    setIsbn(arananKitap.isbn);
-    setCategory(arananKitap.categoryId);
-    
+    console.log(arananKitap);
+    setBookname(arananKitap?.name);
+    setAuthorName(arananKitap?.author);
+    setIsbn(arananKitap?.isbn);
+    setCategory(arananKitap?.categoryId);
     // axios
     //   .get(`http://localhost:3004/books/${params.kitapId}`)
     //   .then((res) => {
     //     console.log(res.data);
-    //     
-    //     
-    //     // axios
-    //     //   .get("http://localhost:3004/categories")
-    //     //   .then((res) => {
-    //     //     setCategories(res.data);
-    //     //   })
-    //     //   .catch((err) => console.log("categories error", err));
-  //   //   })
-  //     .catch((err) => console.log(err));
-  document.title = `Kitaplik - Kitap Duzenle - ${arananKitap}`
-   }, []);
+    //     setBookname(res.data.name);
+    //     setAuthor(res.data.author);
+    //     setIsbn(res.data.isbn);
+    //     setCategory(res.data.categoryId);
+    //     axios
+    //       .get("http://localhost:3004/categories")
+    //       .then((res) => {
+    //         setCategories(res.data);
+    //       })
+    //       .catch((err) => console.log("categories error", err));
+    //   })
+    //   .catch((err) => console.log(err));
+
+    document.title = `Kitaplik - Kitap Duzenle - ${arananKitap}`;
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -77,30 +65,31 @@ const EditBook = (props) => {
   };
 
   const editBook = () => {
-    if (bookname === "" || author === "" || category === "") {
+    if (bookName === "" || authorName === "" || category === "") {
       alert("Kitap adı, Kitap Yazarı ve Kategori boş bırakılamaz");
       return;
     }
     const updatedBook = {
       id: params.kitapId,
-      name: bookname,
-      author: author,
+      name: bookName,
+      author: authorName,
       categoryId: category,
       isbn: isbn,
     };
-   
+    console.log("updatedBook", updatedBook);
+
     axios
       .put(`http://localhost:3004/books/${params.kitapId}`, updatedBook)
       .then((res) => {
         console.log(res);
-        dispatch({ type : "EDIT_BOOK", payload: updatedBook});
+        dispatch({ type: "EDIT_BOOK", payload: updatedBook });
         setShowModal(false);
         navigate("/");
       })
       .catch((err) => console.log("edit error", err));
   };
 
-  if (categoriesState.success !== true || bookState.success !== true) {
+  if (categoriesState.success !== true || booksState.success !== true) {
     return <Loading />;
   }
   return (
@@ -114,7 +103,7 @@ const EditBook = (props) => {
                 type="text"
                 className="form-control"
                 placeholder="Kitap Adı"
-                value={bookname}
+                value={bookName}
                 onChange={(event) => setBookname(event.target.value)}
               />
             </div>
@@ -123,8 +112,8 @@ const EditBook = (props) => {
                 type="text"
                 className="form-control"
                 placeholder="Kitap Yazarı"
-                value={author}
-                onChange={(event) => setAuthor(event.target.value)}
+                value={authorName}
+                onChange={(event) => setAuthorName(event.target.value)}
               />
             </div>
           </div>
@@ -158,6 +147,21 @@ const EditBook = (props) => {
             </div>
           </div>
           <div className="d-flex justify-content-center">
+            {/* <button
+              onClick={() => {
+                setShowModal(true);
+              }}
+              type="submit"
+              style={{
+                backgroundColor: "darkorchid",
+                color: "white",
+              }}
+              className="btnEdit btn shadow-lg p-1 w-25"
+            >
+              {" "}
+              EDIT BOOK{" "}
+            </button> */}
+
             <button
               onClick={() => navigate("/")}
               type="button"
@@ -173,8 +177,9 @@ const EditBook = (props) => {
       </div>
       {showModal === true && (
         <Modal
-          title="Kitap Güncelleme"
-          aciklama={`${bookname} kitabını güncellemek için onaylayın`}
+          title={`Edit ${bookName}`}
+          explain={`Do you want to edit ${bookName} on your list?`}
+          warning="(If you accept, the book will be edited on your list. This action can't be undone!) "
           onCancel={() => setShowModal(false)}
           onConfirm={() => editBook()}
         />

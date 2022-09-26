@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Loading from "./Loading";
-import Modal from "./Modal";
+import Modal from "../components/Modal";
 import { useSelector, useDispatch } from "react-redux";
 
 const ListBooks = (props) => {
@@ -11,8 +11,8 @@ const ListBooks = (props) => {
   console.log(categoriesState);
   console.log("booksState", booksState);
 
-  // const [books, setBooks] = useState(null);
-  // const [categories, setCategories] = useState(null);
+  //const [books, setBooks] = useState(null);
+  //const [categories, setCategories] = useState(null);
   const [didUpdate, setDidUpdate] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [silinecekKitap, setSilinecekKitap] = useState(null);
@@ -33,19 +33,18 @@ const ListBooks = (props) => {
     //   .catch((err) => console.log("books err", err));
   }, [didUpdate]);
   const kitapSil = (id) => {
-    console.log(id);
+    console.log(`http://localhost:3004/books/${id}`);
     axios
       .delete(`http://localhost:3004/books/${id}`)
       .then((res) => {
         console.log("delete res", res);
-        dispatch({ type: "DELETE_BOOK", payload: id,
-       });
+        dispatch({ type: "DELETE_BOOK", payload: id });
         setDidUpdate(!didUpdate);
         setShowModal(false);
       })
       .catch((err) => console.log(err));
   };
-  if (booksState.success === false || categoriesState.succes === false) {
+  if (booksState.success !== true || categoriesState.success !== true) {
     return <Loading />;
   }
   return (
@@ -71,7 +70,7 @@ const ListBooks = (props) => {
         </thead>
         <tbody>
           {booksState.books.map((book) => {
-            const category = categoriesState.categories?.find(
+            const category = categoriesState.categories.find(
               (cat) => cat.id === book.categoryId
             );
             return (
@@ -89,7 +88,7 @@ const ListBooks = (props) => {
                       className="btn btn-outline-danger btn-sm"
                       onClick={() => {
                         setShowModal(true);
-                        kitapSil(book.id);
+                        // kitapSil(book.id);
                         setSilinecekKitap(book.id);
                         setSilinecekKitapIsmi(book.name);
                       }}
