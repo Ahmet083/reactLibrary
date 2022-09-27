@@ -4,9 +4,9 @@ import { createStore, combineReducers } from "redux";
 
 const rootReducer = combineReducers({
   categoriesState: categoriesReducer,
-  booksState : booksReducer,
+  booksState: booksReducer,
 });
 
 const store = createStore(rootReducer);
 
-export default store
+export default store;

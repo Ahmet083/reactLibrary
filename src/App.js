@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 
 
+
 function App() {
    const dispatch = useDispatch();
 
@@ -49,6 +50,7 @@ function App() {
        <Route path ="/add-book" element={<AddBook />} />
        <Route path ="/edit-book/:kitapId" element={<EditBook />} />
        <Route path = "/categories" element={<CategoriesList />} />
+       
       </Routes>
     </BrowserRouter>
   );

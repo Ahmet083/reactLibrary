@@ -4,15 +4,15 @@
       "id": 2,
       "name": "Yeraltından Notlar",
       "author": "Dostoyevski",
-      "isbn": "11111111112",
-      "categoryId": "2"
+      "categoryId": "2",
+      "isbn": "11111111112"
     },
     {
       "id": 1663963071594,
       "name": "fbcfb",
       "author": "cb",
-      "isbn": "cvb",
-      "categoryId": "1"
+      "categoryId": "1",
+      "isbn": "cvb"
     }
   ],
   "categories": [

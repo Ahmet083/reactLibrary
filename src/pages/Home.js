@@ -4,7 +4,7 @@ import ListBooks from "../components/ListBooks"
 
 const Home = (props) => {
     useEffect(() => {
-      document.title = "Kitaplik";
+      document.title = "LIBRARY";
     },[]);
     return(
 

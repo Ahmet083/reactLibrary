@@ -147,20 +147,17 @@ const EditBook = (props) => {
             </div>
           </div>
           <div className="d-flex justify-content-center">
-            {/* <button
+            <button
               onClick={() => {
                 setShowModal(true);
               }}
               type="submit"
-              style={{
-                backgroundColor: "darkorchid",
-                color: "white",
-              }}
-              className="btnEdit btn shadow-lg p-1 w-25"
+             
+              className="btn btn-Edit btn-primary shadow-lg p-1 w-25"
             >
               {" "}
-              EDIT BOOK{" "}
-            </button> */}
+              Edit Book{" "}
+            </button>
 
             <button
               onClick={() => navigate("/")}

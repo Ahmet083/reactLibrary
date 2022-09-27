@@ -1,34 +1,31 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 
 import Loading from "./Loading";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+const ListCategories = () => {
+  const { categoriesState } = useSelector((state) => state);
+  console.log("catState", categoriesState);
 
-const ListCategories = ()=> {
-    const { categoriesState } = useSelector ((state) => state);
-    console.log("catState", categoriesState);
+  useEffect(() => {
+    document.title = "Kitaplik - Kategoriler";
+  }, []);
 
-    useEffect (() => {
-        document.title ="Kitaplik - Kategoriler";
-    
-    }, []);
+  if (categoriesState.success !== true) {
+    return <Loading />;
+  }
 
-    if (categoriesState.success  !== true) {
-        return <Loading />
-
-    }
-
-    return(
-        <div className="container my-5">
+  return (
+    <div className="container my-5">
       <div className="my-3 d-flex justify-content-end">
         <Link to="/add-category" className="btn btn-primary">
           Kategori Ekle
         </Link>
       </div>
-      <table className="table">
-        <thead>
-          <tr>
+      <table className="table ">
+        <thead className="thead-start">
+          <tr className="table-dark text-light ">
             <th scope="col">Kategori Adı</th>
             <th className="text-center" scope="col">
               İşlem
@@ -39,7 +36,8 @@ const ListCategories = ()=> {
           {categoriesState.categories.map((category) => {
             return (
               <tr key={category.id}>
-                <td>{category.name}</td>
+                 
+                <td>{category?.name}</td>
 
                 <td className="text-center">
                   <div className="btn-group" role="group">
@@ -58,6 +56,7 @@ const ListCategories = ()=> {
                     <Link
                       to={`edit-category/${category.id}`}
                       className="btn btn-sm btn-outline-secondary"
+                      type="button"
                     >
                       Edit
                     </Link>
@@ -77,8 +76,7 @@ const ListCategories = ()=> {
         />
       )} */}
     </div>
-
-    );
+  );
 };
 
 export default ListCategories;
