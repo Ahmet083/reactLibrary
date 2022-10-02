@@ -44,7 +44,7 @@ const booksReducer = (state = initialState, action) => {
       //1. güncellenecek kitabın o anki halini diziden çıkar
       //2.güncel halini diziye ekle
       const filteredBooksEdit = state.books.filter(
-        (item) => item.id != action.payload.id
+        (item) => item.id !== action.payload.id
       );
       return {
         ...state,
