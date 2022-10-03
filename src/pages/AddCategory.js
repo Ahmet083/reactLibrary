@@ -15,4 +15,4 @@ const AddCategory =(props) => {
     )
 }
 
-export default AddCategory
+export default AddCategory;

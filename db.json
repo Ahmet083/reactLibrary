@@ -4,8 +4,8 @@
       "id": 1664746765951,
       "name": "Yaban",
       "author": "Yakup Kadri",
-      "isbn": "",
-      "categoryId": "1"
+      "categoryId": "2",
+      "isbn": ""
     },
     {
       "id": 1664746840566,
@@ -13,6 +13,20 @@
       "author": "Resat Nuri",
       "categoryId": "3",
       "isbn": ""
+    },
+    {
+      "id": 1664822739941,
+      "name": "sfa",
+      "author": "sd",
+      "isbn": "",
+      "categoryId": "1"
+    },
+    {
+      "id": 1664827032000,
+      "name": "wd",
+      "author": "asd",
+      "isbn": "",
+      "categoryId": "2"
     }
   ],
   "categories": [
@@ -27,6 +41,10 @@
     {
       "id": 3,
       "name": "Deneme"
+    },
+    {
+      "id": 1664827018335,
+      "name": "Deneme1"
     }
   ]
 }

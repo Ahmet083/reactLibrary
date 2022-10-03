@@ -1,16 +1,39 @@
-import React, { useEffect } from "react";
-
+import React, { useEffect, useState } from "react";
+import Modal from "./Modal";
 import Loading from "./Loading";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 const ListCategories = () => {
-  const { categoriesState } = useSelector((state) => state);
-  console.log("catState", categoriesState);
+  const dispatch = useDispatch();
+  const { categoriesState, booksState } = useSelector((state) => state);
+  console.log("booksState", booksState);
 
+
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [silinecekCategory, setSilinecekCategory] = useState(null);
+  const [silinecekCategoryName, setSilinecekCategoryName] = useState("");
   useEffect(() => {
     document.title = "Kitaplik - Kategoriler";
   }, []);
+
+  const categorySil = (id) => {
+    axios
+      .delete(`http://localhost:3004/categories/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        dispatch({ type: "DELETE_CATEGORY", payload: id });
+        const booksHasCategory = booksState.books.filter(
+          (item) => item.categoryId == id
+        );
+        console.log("booksHasCategory", booksHasCategory);
+        booksHasCategory.map((item) =>
+          dispatch({ type: "DELETE_BOOK", payload: item.id })
+        );
+      })
+      .catch((err) => console.log("deleteCategoryErr", err));
+  };
 
   if (categoriesState.success !== true) {
     return <Loading />;
@@ -23,9 +46,9 @@ const ListCategories = () => {
           Kategori Ekle
         </Link>
       </div>
-      <table className="table ">
-        <thead className="thead-start">
-          <tr className="table-dark text-light ">
+      <table className="table">
+        <thead>
+          <tr>
             <th scope="col">Kategori Adı</th>
             <th className="text-center" scope="col">
               İşlem
@@ -36,8 +59,7 @@ const ListCategories = () => {
           {categoriesState.categories.map((category) => {
             return (
               <tr key={category.id}>
-                 
-                <td>{category?.name}</td>
+                <td>{category.name}</td>
 
                 <td className="text-center">
                   <div className="btn-group" role="group">
@@ -45,18 +67,17 @@ const ListCategories = () => {
                       type="button"
                       className="btn btn-outline-danger btn-sm"
                       onClick={() => {
-                        // setShowModal(true);
-                        // //kitapSil(book.id);
-                        // setSilinecekKitap(book.id);
-                        // setSilinecekKitapIsmi(book.name);
+                        setShowDeleteModal(true);
+                        //kitapSil(book.id);
+                        setSilinecekCategory(category.id);
+                        setSilinecekCategoryName(category.name);
                       }}
                     >
                       Delete
                     </button>
                     <Link
-                      to={`edit-category/${category.id}`}
+                      to={`/edit-category/${category.id}`}
                       className="btn btn-sm btn-outline-secondary"
-                      type="button"
                     >
                       Edit
                     </Link>
@@ -67,14 +88,14 @@ const ListCategories = () => {
           })}
         </tbody>
       </table>
-      {/* {showModal === true && (
+      {showDeleteModal === true && (
         <Modal
           aciklama={`Silmek istediğinize emin misiniz?`}
-          title={silinecekKitapIsmi}
-          onConfirm={() => kitapSil(silinecekKitap)}
-          onCancel={() => setShowModal(false)}
+          title={silinecekCategoryName}
+          onConfirm={() => categorySil(silinecekCategory)}
+          onCancel={() => setShowDeleteModal(false)}
         />
-      )} */}
+      )}
     </div>
   );
 };

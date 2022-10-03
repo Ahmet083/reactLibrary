@@ -18,10 +18,10 @@ const EditBook = (props) => {
   console.log("params", params);
  // const booksState = useState();
 
-  const [bookName, setBookname] = useState("");
-  const [authorName, setAuthorName] = useState("");
+  const [bookname, setbookname] = useState("");
+  const [author, setauthor] = useState("");
   const [isbn, setIsbn] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setcategory] = useState("");
   // const [categories, setCategories] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
@@ -35,15 +35,15 @@ const EditBook = (props) => {
       return;
     }
     console.log(arananKitap);
-    setBookname(arananKitap?.name);
-    setAuthorName(arananKitap?.author);
+    setbookname(arananKitap?.name);
+    setauthor(arananKitap?.author);
     setIsbn(arananKitap?.isbn);
-    setCategory(arananKitap?.categoryId);
+    setcategory(arananKitap?.categoryId);
     // axios
     //   .get(`http://localhost:3004/books/${params.kitapId}`)
     //   .then((res) => {
     //     console.log(res.data);
-    //     setBookname(res.data.name);
+    //     setbookname(res.data.name);
     //     setAuthor(res.data.author);
     //     setIsbn(res.data.isbn);
     //     setCategory(res.data.categoryId);
@@ -65,14 +65,14 @@ const EditBook = (props) => {
   };
 
   const editBook = () => {
-    if (bookName === "" || authorName === "" || category === "") {
+    if (bookname === "" || author === "" || category === "") {
       alert("Kitap adı, Kitap Yazarı ve Kategori boş bırakılamaz");
       return;
     }
     const updatedBook = {
       id: params.kitapId,
-      name: bookName,
-      author: authorName,
+      name: bookname,
+      author: author,
       categoryId: category,
       isbn: isbn,
     };
@@ -103,8 +103,8 @@ const EditBook = (props) => {
                 type="text"
                 className="form-control"
                 placeholder="Kitap Adı"
-                value={bookName}
-                onChange={(event) => setBookname(event.target.value)}
+                value={bookname}
+                onChange={(event) => setbookname(event.target.value)}
               />
             </div>
             <div className="col">
@@ -112,8 +112,8 @@ const EditBook = (props) => {
                 type="text"
                 className="form-control"
                 placeholder="Kitap Yazarı"
-                value={authorName}
-                onChange={(event) => setAuthorName(event.target.value)}
+                value={author}
+                onChange={(event) => setauthor(event.target.value)}
               />
             </div>
           </div>
@@ -131,7 +131,7 @@ const EditBook = (props) => {
               <select
                 className="form-select"
                 value={category}
-                onChange={(event) => setCategory(event.target.value)}
+                onChange={(event) => setcategory(event.target.value)}
               >
                 <option value={""} selected>
                   Kategori Seçin
@@ -174,8 +174,8 @@ const EditBook = (props) => {
       </div>
       {showModal === true && (
         <Modal
-          title={`Edit ${bookName}`}
-          explain={`Do you want to edit ${bookName} on your list?`}
+          title={`Edit ${bookname}`}
+          explain={`Do you want to edit ${bookname} on your list?`}
           warning="(If you accept, the book will be edited on your list. This action can't be undone!) "
           onCancel={() => setShowModal(false)}
           onConfirm={() => editBook()}

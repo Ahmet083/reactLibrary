@@ -29,6 +29,12 @@ const categoriesReducer = (state = initialState, action) => {
       errorMessage: action.payload,
     };
   }
+  if (action.type === "ADD_CATRGORY"){
+    return {
+      ...state,
+      categories: [...state.categories, action.payload]
+    };
+  }
   return state;
   // switch (action.type) {
   //   case "FETCH_CATEGORIES_START":
