@@ -15,25 +15,14 @@
       "isbn": ""
     },
     {
-      "id": 1664869218276,
-      "name": "CalisKusu",
-      "author": "Resat Nuri",
+      "id": 1664881727490,
+      "name": "ad",
+      "author": "ad",
       "isbn": "",
-      "categoryId": "1"
-    },
-    {
-      "id": 1664870635922,
-      "name": "Sineklerin Tanrisi",
-      "author": "Wilhim Golding",
-      "isbn": "",
-      "categoryId": "1"
+      "categoryId": "2"
     }
   ],
   "categories": [
-    {
-      "id": 1,
-      "name": "Roman"
-    },
     {
       "id": 2,
       "name": "Hikaye"
@@ -47,8 +36,16 @@
       "name": "Siir"
     },
     {
-      "id": 1664874718701,
-      "name": "ROMANn"
+      "id": 1664881420838,
+      "name": "Roman"
+    },
+    {
+      "id": 1664882323044,
+      "name": "Gazel"
+    },
+    {
+      "id": 1664882391988,
+      "name": "Roman2"
     }
   ]
 }

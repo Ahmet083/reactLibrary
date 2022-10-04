@@ -40,14 +40,26 @@ const categoriesReducer = (state = initialState, action) => {
     return {
       ...state,
       categories: filteredCategories 
-    }
+    };
+  }
+
+  if (action.type === "EDIT_CATEGORY") {
+    const filteredCategories = state.categories.filter(
+      (item) => item.id != action.payload.id);
+  return {
+    ...state,
+    categories: [...filteredCategories, action.payload],
+  };
+  }
+    
 
     return {
       ...state,
 
     }
-  }
+  
   return state;
+
   // switch (action.type) {
   //   case "FETCH_CATEGORIES_START":
   //     return {

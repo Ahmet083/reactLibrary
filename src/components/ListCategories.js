@@ -77,11 +77,12 @@ const ListCategories = () => {
                       Delete
                     </button>
                     <Link
-                      to={`edit-category/${category.id}`}
+                      to={`/edit-category/${category.id}`}
                       className="btn btn-sm btn-outline-primary"
                     >
                       Edit
                     </Link>
+                    
                   </div>
                 </td>
               </tr>
