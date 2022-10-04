@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import Loading from "../components/Loading";
 import Header from "../components/Header";
+import { bindActionCreators } from "redux";
 
 
 const EditCategory = (props) => {
@@ -49,6 +50,7 @@ const EditCategory = (props) => {
       ...category,
       name: newCategoryName,
     };
+    
      axios
       .put(`http://localhost:3004/categories/${category.id}`, newCategory)
       .then((res) => {

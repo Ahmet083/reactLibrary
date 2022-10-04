@@ -32,15 +32,7 @@ const Header = (props) => {
               </Link>
             </li>
           </ul>
-          <div className="input-group">
-  <div className="form-outline d-flex justify-align-center"  >
-    <input id="search-input" type="search" id="form1" className="form-control mx-3" />
-    <button className="btn btn-danger form-label" for="form1">Search</button>
-  </div>
-  <button id="search-button" type="button" className="btn btn-primary ">
-    <i className="fas fa-search"></i>
-  </button>
-</div>
+         
         </div>
       </div>
     </nav>

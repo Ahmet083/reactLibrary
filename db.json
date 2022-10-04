@@ -15,9 +15,23 @@
       "isbn": ""
     },
     {
-      "id": 1664881727490,
-      "name": "ad",
-      "author": "ad",
+      "id": 1664917320958,
+      "name": "yaban",
+      "author": "reas",
+      "isbn": "",
+      "categoryId": "1664881420838"
+    },
+    {
+      "id": 1664917401605,
+      "name": "Yaban",
+      "author": "Yakup Kadri",
+      "isbn": "",
+      "categoryId": "1664881420838"
+    },
+    {
+      "id": 1664917427980,
+      "name": "asd",
+      "author": "sad",
       "isbn": "",
       "categoryId": "2"
     }
@@ -32,20 +46,8 @@
       "name": "Deneme"
     },
     {
-      "id": 1664868880947,
-      "name": "Siir"
-    },
-    {
       "id": 1664881420838,
       "name": "Roman"
-    },
-    {
-      "id": 1664882323044,
-      "name": "Gazel"
-    },
-    {
-      "id": 1664882391988,
-      "name": "Roman2"
     }
   ]
 }
