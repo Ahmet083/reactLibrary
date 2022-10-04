@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AddBook from "./pages/AddBook";
 import EditBook from "./pages/EditBook";
 import CategoriesList from "./pages/CategoriesList";
+import EditCategory from "./pages/EditCategory";
 
 import AddCategory from "./pages/AddCategory"
 import Home from "./pages/Home";
@@ -52,7 +53,7 @@ function App() {
        <Route path ="/edit-book/:kitapId" element={<EditBook />} />
        <Route path = "/categories" element={<CategoriesList />} />
        <Route path ="/add-Category" element={<AddCategory />} />
-       
+       <Route path ="/edit-category/:categoryId" element={<EditCategory />} />
       </Routes>
     </BrowserRouter>
   );

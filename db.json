@@ -15,18 +15,18 @@
       "isbn": ""
     },
     {
-      "id": 1664822739941,
-      "name": "sfa",
-      "author": "sd",
+      "id": 1664869218276,
+      "name": "CalisKusu",
+      "author": "Resat Nuri",
       "isbn": "",
       "categoryId": "1"
     },
     {
-      "id": 1664827032000,
-      "name": "wd",
-      "author": "asd",
+      "id": 1664870635922,
+      "name": "Sineklerin Tanrisi",
+      "author": "Wilhim Golding",
       "isbn": "",
-      "categoryId": "2"
+      "categoryId": "1"
     }
   ],
   "categories": [
@@ -43,8 +43,12 @@
       "name": "Deneme"
     },
     {
-      "id": 1664827018335,
-      "name": "Deneme1"
+      "id": 1664868880947,
+      "name": "Siir"
+    },
+    {
+      "id": 1664874718701,
+      "name": "ROMANn"
     }
   ]
 }

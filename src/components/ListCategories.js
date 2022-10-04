@@ -14,11 +14,12 @@ const ListCategories = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [silinecekCategory, setSilinecekCategory] = useState(null);
   const [silinecekCategoryName, setSilinecekCategoryName] = useState("");
+  
   useEffect(() => {
     document.title = "Kitaplik - Kategoriler";
   }, []);
 
-  const categorySil = (id) => {
+  const categorySil = (id) =>{
     axios
       .delete(`http://localhost:3004/categories/${id}`)
       .then((res) => {
@@ -76,8 +77,8 @@ const ListCategories = () => {
                       Delete
                     </button>
                     <Link
-                      to={`/edit-category/${category.id}`}
-                      className="btn btn-sm btn-outline-secondary"
+                      to={`edit-category/${category.id}`}
+                      className="btn btn-sm btn-outline-primary"
                     >
                       Edit
                     </Link>
